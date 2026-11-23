@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日大赛推特在线 - 品牌视频门户 _ 原创高清内容社区</title>
+<meta name="description" content="每日大赛推特在线官方网站，专注赛事影像与创作者社区的视频品牌平台，汇聚原创高清内容、行业观察与创作者故事。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1720'/%3E%3Cpath d='M18 20h28v6H18zM18 32h18v6H18zM18 44h24v6H18z' fill='%233fd6c9'/%3E%3Ccircle cx='50' cy='47' r='7' fill='%23ff7a59'/%3E%3C/svg%3E">
+<style>
+:root{
+  --dt-bg:#0d1218;
+  --dt-bg-soft:#121a22;
+  --dt-panel:#16212b;
+  --dt-panel-2:#1b2935;
+  --dt-line:#27394a;
+  --dt-text:#e6eef5;
+  --dt-muted:#93a6b6;
+  --dt-cyan:#3fd6c9;
+  --dt-cyan-soft:rgba(63,214,201,.12);
+  --dt-coral:#ff7a59;
+  --dt-coral-soft:rgba(255,122,89,.14);
+  --dt-lime:#c6f24e;
+  --dt-radius:16px;
+  --dt-radius-sm:10px;
+  --dt-shadow:0 18px 48px rgba(0,0,0,.42);
+  --dt-sticky-h:104px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(1200px 620px at 82% -8%, rgba(63,214,201,.10), transparent 60%),
+    radial-gradient(900px 520px at 4% 18%, rgba(255,122,89,.09), transparent 62%),
+    var(--dt-bg);
+  color:var(--dt-text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",system-ui,-apple-system,sans-serif;
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input{font-family:inherit}
+.dt-wrap{width:min(1180px,92vw);margin:0 auto}
+.dt-anchor{scroll-margin-top:calc(var(--dt-sticky-h) + 18px)}
+
+/* ============ 吸顶公告条 + 页头 ============ */
+.dt-sticky-stack{
+  position:sticky;top:0;z-index:90;
+  backdrop-filter:blur(14px);
+  background:rgba(13,18,24,.92);
+  border-bottom:1px solid var(--dt-line);
+}
+.dt-announce{
+  display:flex;align-items:center;gap:14px;
+  padding:9px 0;
+  font-size:13.5px;
+  border-bottom:1px dashed rgba(63,214,201,.28);
+}
+.dt-announce-tag{
+  flex:none;
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--dt-coral);
+  color:#20120d;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.06em;
+  padding:3px 10px;
+  border-radius:999px;
+}
+.dt-announce-track{overflow:hidden;flex:1;min-width:0}
+.dt-announce-list{display:flex;gap:38px;white-space:nowrap;animation:dt-ticker 34s linear infinite}
+.dt-announce-list li{list-style:none;color:var(--dt-muted)}
+.dt-announce-list strong{color:var(--dt-cyan);font-weight:600}
+@keyframes dt-ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.dt-header{display:flex;align-items:center;gap:22px;padding:12px 0}
+.dt-brand{display:flex;align-items:center;gap:11px;flex:none}
+.dt-brand-mark{
+  width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(140deg,var(--dt-cyan),#1c9c92 62%,#12655f);
+  display:grid;place-items:center;color:#06201e;font-weight:900;font-size:19px;
+  box-shadow:0 6px 18px rgba(63,214,201,.28);
+}
+.dt-brand-name{font-size:17px;font-weight:800;letter-spacing:.02em;line-height:1.2}
+.dt-brand-sub{font-size:11px;color:var(--dt-muted);letter-spacing:.16em;text-transform:uppercase}
+.dt-nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.dt-nav a{
+  padding:7px 12px;border-radius:9px;font-size:14.5px;color:var(--dt-muted);
+  transition:color .2s,background .2s;
+}
+.dt-nav a:hover,.dt-nav a:focus-visible{color:var(--dt-text);background:rgba(63,214,201,.10)}
+.dt-search{
+  display:flex;align-items:center;gap:8px;flex:none;
+  background:var(--dt-panel);border:1px solid var(--dt-line);
+  border-radius:999px;padding:6px 8px 6px 14px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.dt-search:focus-within{border-color:var(--dt-cyan);box-shadow:0 0 0 3px var(--dt-cyan-soft)}
+.dt-search input{
+  width:132px;background:none;border:none;outline:none;color:var(--dt-text);font-size:14px;
+}
+.dt-search input::placeholder{color:#64788a}
+.dt-search button{
+  background:var(--dt-cyan);color:#06201e;font-weight:700;font-size:13px;
+  padding:5px 13px;border-radius:999px;
+}
+.dt-burger{
+  display:none;width:42px;height:42px;border-radius:11px;
+  border:1px solid var(--dt-line);background:var(--dt-panel);
+  place-items:center;font-size:19px;
+}
+.dt-search-hint{
+  display:none;font-size:13px;color:var(--dt-cyan);
+  padding:0 0 10px;
+}
+.dt-search-hint.dt-show{display:block}
+
+/* ============ 首屏 ============ */
+.dt-hero{padding:46px 0 22px}
+.dt-hero-grid{
+  display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4fr);
+  gap:36px;align-items:center;
+}
+.dt-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12.5px;letter-spacing:.15em;color:var(--dt-cyan);
+  border:1px solid rgba(63,214,201,.35);border-radius:999px;
+  padding:5px 13px;background:var(--dt-cyan-soft);
+  margin-bottom:20px;
+}
+.dt-hero h1{
+  font-size:clamp(34px,5vw,58px);
+  line-height:1.06;letter-spacing:-.02em;font-weight:900;
+  margin-bottom:8px;
+}
+.dt-hero h1 em{
+  font-style:normal;
+  background:linear-gradient(100deg,var(--dt-cyan),var(--dt-lime));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.dt-hero-slogan{
+  font-size:clamp(17px,2vw,21px);color:var(--dt-text);
+  font-weight:600;margin:12px 0 16px;
+}
+.dt-hero-slogan span{color:var(--dt-coral)}
+.dt-hero-intro{color:var(--dt-muted);font-size:15.5px;max-width:56ch}
+.dt-stat-row{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;margin:26px 0 26px;
+}
+.dt-stat{
+  background:var(--dt-panel);border:1px solid var(--dt-line);
+  border-radius:var(--dt-radius-sm);padding:14px 15px;
+}
+.dt-stat-num{font-size:24px;font-weight:800;color:var(--dt-cyan);line-height:1.15;letter-spacing:-.01em}
+.dt-stat-label{font-size:12.5px;color:var(--dt-muted);margin-top:3px}
+.dt-hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.dt-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:999px;font-size:14.5px;font-weight:700;
+  transition:transform .18s,box-shadow .18s,background .18s,border-color .18s;
+}
+.dt-btn:active{transform:translateY(1px)}
+.dt-btn-primary{background:var(--dt-cyan);color:#06201e;box-shadow:0 10px 26px rgba(63,214,201,.26)}
+.dt-btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(63,214,201,.34)}
+.dt-btn-ghost{border:1px solid var(--dt-line);color:var(--dt-text)}
+.dt-btn-ghost:hover{border-color:var(--dt-cyan);color:var(--dt-cyan)}
+.dt-btn-coral{background:var(--dt-coral);color:#241008}
+.dt-btn-coral:hover{transform:translateY(-2px)}
+.dt-hero-visual{position:relative}
+.dt-hero-visual img{
+  width:100%;aspect-ratio:4/4.4;object-fit:cover;
+  border-radius:22px;border:1px solid var(--dt-line);
+  box-shadow:var(--dt-shadow);
+}
+.dt-hero-badge{
+  position:absolute;left:-10px;bottom:22px;
+  background:rgba(13,18,24,.9);border:1px solid rgba(63,214,201,.4);
+  border-radius:14px;padding:12px 16px;
+  display:flex;align-items:center;gap:11px;backdrop-filter:blur(8px);
+}
+.dt-hero-badge b{color:var(--dt-cyan);font-size:19px}
+.dt-hero-badge span{font-size:12.5px;color:var(--dt-muted);line-height:1.4}
+
+/* ============ 通用 section ============ */
+.dt-section{padding:52px 0}
+.dt-section-head{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:26px}
+.dt-section-head h2{
+  font-size:clamp(24px,3.1vw,34px);font-weight:800;letter-spacing:-.01em;line-height:1.2;
+}
+.dt-section-head p{color:var(--dt-muted);font-size:14.5px;max-width:62ch}
+.dt-kicker{font-size:12px;letter-spacing:.2em;color:var(--dt-coral);font-weight:700;display:block;margin-bottom:7px}
+.dt-divider{height:1px;background:linear-gradient(90deg,var(--dt-line),transparent);margin:0}
+
+/* ============ 焦点大图 + 文字列表 ============ */
+.dt-focus-grid{display:grid;grid-template-columns:minmax(0,6.2fr) minmax(0,3.8fr);gap:26px}
+.dt-focus-main{
+  background:var(--dt-panel);border:1px solid var(--dt-line);border-radius:var(--dt-radius);
+  overflow:hidden;transition:border-color .2s,transform .2s;
+}
+.dt-focus-main:hover{border-color:rgba(63,214,201,.55);transform:translateY(-3px)}
+.dt-focus-main img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.dt-focus-body{padding:20px 22px 24px}
+.dt-tagline{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.dt-tag{
+  font-size:11.5px;padding:3px 10px;border-radius:999px;
+  background:var(--dt-cyan-soft);color:var(--dt-cyan);border:1px solid rgba(63,214,201,.28);
+}
+.dt-tag.dt-tag-coral{background:var(--dt-coral-soft);color:var(--dt-coral);border-color:rgba(255,122,89,.3)}
+.dt-focus-body h3{font-size:21px;line-height:1.35;margin-bottom:9px}
+.dt-focus-body p{color:var(--dt-muted);font-size:14.5px}
+.dt-meta-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:12px;
+  margin-top:16px;font-size:13px;color:var(--dt-muted);
+  border-top:1px dashed var(--dt-line);padding-top:14px;
+}
+.dt-meta-row .dt-author-chip{display:flex;align-items:center;gap:7px;color:var(--dt-text);font-weight:600}
+.dt-avatar{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;font-weight:800;color:#08131a;flex:none;
+}
+.dt-avatar-lg{width:46px;height:46px;font-size:17px}
+.dt-act{display:flex;gap:8px;margin-left:auto}
+.dt-act button{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12.5px;color:var(--dt-muted);
+  border:1px solid var(--dt-line);border-radius:999px;padding:4px 11px;
+  transition:color .18s,border-color .18s,background .18s;
+}
+.dt-act button:hover{color:var(--dt-cyan);border-color:var(--dt-cyan)}
+.dt-act button.dt-on{color:var(--dt-coral);border-color:rgba(255,122,89,.5);background:var(--dt-coral-soft)}
+.dt-side-list{display:flex;flex-direction:column;gap:2px}
+.dt-side-item{
+  display:grid;grid-template-columns:34px minmax(0,1fr);gap:13px;
+  padding:14px 4px;border-bottom:1px solid var(--dt-line);
+  transition:background .18s;
+}
+.dt-side-item:hover{background:rgba(63,214,201,.05)}
+.dt-side-num{font-size:19px;font-weight:800;color:#3c556a;line-height:1.3;font-variant-numeric:tabular-nums}
+.dt-side-item h4{font-size:15px;line-height:1.45;margin-bottom:4px}
+.dt-side-item span{font-size:12.5px;color:var(--dt-muted)}
+
+/* ============ 视频卡片网格 ============ */
+.dt-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.dt-video-card{
+  background:var(--dt-panel);border:1px solid var(--dt-line);border-radius:var(--dt-radius);
+  display:flex;flex-direction:column;overflow:hidden;
+  transition:transform .22s,border-color .22s,box-shadow .22s;
+}
+.dt-video-card:hover{transform:translateY(-4px);border-color:rgba(63,214,201,.5);box-shadow:var(--dt-shadow)}
+.dt-video-thumb{position:relative}
+.dt-video-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.dt-play{
+  position:absolute;inset:auto 12px 12px auto;
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(13,18,24,.82);border:1px solid rgba(63,214,201,.55);
+  display:grid;place-items:center;color:var(--dt-cyan);font-size:13px;
+}
+.dt-video-body{padding:16px 17px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dt-video-body h3{font-size:16.5px;line-height:1.4}
+.dt-video-body p{font-size:13.5px;color:var(--dt-muted);flex:1}
+.dt-video-foot{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px;
+  font-size:12px;color:var(--dt-muted);padding-top:11px;border-top:1px dashed var(--dt-line);
+}
+.dt-video-foot .dt-act{margin-left:auto;gap:6px}
+.dt-video-foot .dt-act button{padding:3px 9px;font-size:11.5px}
+
+/* ============ 品牌解析长文 ============ */
+.dt-essay{
+  background:linear-gradient(180deg,var(--dt-panel),rgba(18,26,34,.6));
+  border:1px solid var(--dt-line);border-radius:var(--dt-radius);
+  padding:34px 34px 38px;
+}
+.dt-essay h2{font-size:clamp(23px,3vw,31px);margin-bottom:6px;line-height:1.25}
+.dt-essay-lead{color:var(--dt-cyan);font-size:14px;margin-bottom:22px;letter-spacing:.02em}
+.dt-essay h3{font-size:17.5px;margin:26px 0 9px;color:var(--dt-lime);line-height:1.4}
+.dt-essay p{color:#c3d2de;font-size:15px;margin-bottom:12px}
+.dt-essay p strong{color:var(--dt-text)}
+.dt-essay-quote{
+  border-left:3px solid var(--dt-coral);padding:12px 16px;margin:20px 0;
+  background:var(--dt-coral-soft);border-radius:0 10px 10px 0;
+  color:#ffd9cf;font-size:14.5px;
+}
+
+/* ============ 专题 ============ */
+.dt-topic-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.dt-topic{
+  border:1px solid var(--dt-line);border-radius:var(--dt-radius);
+  background:var(--dt-panel-2);padding:22px;display:flex;flex-direction:column;gap:12px;
+  transition:border-color .2s,background .2s;
+}
+.dt-topic:hover{border-color:rgba(198,242,78,.45)}
+.dt-topic-head{display:flex;align-items:flex-start;gap:12px}
+.dt-topic-icon{
+  width:40px;height:40px;border-radius:11px;flex:none;display:grid;place-items:center;
+  font-size:18px;font-weight:800;background:var(--dt-cyan-soft);color:var(--dt-cyan);
+}
+.dt-topic h3{font-size:17px;line-height:1.4}
+.dt-topic-status{
+  font-size:11.5px;color:var(--dt-lime);border:1px solid rgba(198,242,78,.35);
+  border-radius:999px;padding:2px 9px;display:inline-block;margin-top:5px;
+}
+.dt-topic p{font-size:13.5px;color:var(--dt-muted)}
+.dt-topic ul{list-style:none;display:flex;flex-direction:column;gap:7px;border-top:1px dashed var(--dt-line);padding-top:12px}
+.dt-topic li{font-size:13.5px;color:#bfd0dd;display:flex;gap:8px;line-height:1.55}
+.dt-topic li::before{content:"▸";color:var(--dt-coral);flex:none}
+
+/* ============ 创作者（双列简介） ============ */
+.dt-author-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.dt-author-card{
+  display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;
+  background:var(--dt-panel);border:1px solid var(--dt-line);border-radius:var(--dt-radius);
+  padding:20px;transition:border-color .2s,transform .2s;
+}
+.dt-author-card:hover{border-color:rgba(63,214,201,.5);transform:translateY(-2px)}
+.dt-author-main h3{font-size:16.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dt-author-main h3 .dt-role{font-size:11px;color:var(--dt-cyan);border:1px solid rgba(63,214,201,.35);border-radius:999px;padding:1px 8px}
+.dt-author-facts{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--dt-muted);margin:8px 0 9px}
+.dt-author-facts b{color:var(--dt-text);font-weight:700}
+.dt-author-main p{font-size:13.5px;color:var(--dt-muted)}
+.dt-author-open{
+  margin-top:11px;font-size:12.5px;color:var(--dt-cyan);
+  border-bottom:1px dashed rgba(63,214,201,.5);padding-bottom:1px;
+}
+
+/* ============ 口碑（双列短评） ============ */
+.dt-review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.dt-review{
+  background:var(--dt-panel);border:1px solid var(--dt-line);border-radius:var(--dt-radius-sm);
+  padding:18px 20px;display:flex;flex-direction:column;gap:9px;
+}
+.dt-review-top{display:flex;align-items:center;gap:10px}
+.dt-review-top strong{font-size:14px}
+.dt-review-stars{margin-left:auto;color:var(--dt-lime);font-size:12px;letter-spacing:1px}
+.dt-review p{font-size:13.5px;color:#bfd0dd}
+.dt-review-foot{font-size:11.5px;color:#64788a;border-top:1px dashed var(--dt-line);padding-top:9px}
+
+/* ============ 企业动态 ============ */
+.dt-news{display:flex;flex-direction:column;gap:2px}
+.dt-news-item{
+  display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:16px;align-items:center;
+  padding:16px 4px;border-bottom:1px solid var(--dt-line);
+  transition:background .18s;
+}
+.dt-news-item:hover{background:rgba(255,122,89,.05)}
+.dt-news-date{font-size:12.5px;color:var(--dt-coral);font-variant-numeric:tabular-nums;font-weight:700}
+.dt-news-item h3{font-size:15.5px;line-height:1.4;margin-bottom:3px}
+.dt-news-item p{font-size:13px;color:var(--dt-muted)}
+.dt-news-more{font-size:12px;color:var(--dt-cyan);white-space:nowrap}
+
+/* ============ FAQ ============ */
+.dt-faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.dt-faq-grid details{
+  background:var(--dt-panel);border:1px solid var(--dt-line);border-radius:var(--dt-radius-sm);
+  padding:0;overflow:hidden;
+}
+.dt-faq-grid summary{
+  list-style:none;cursor:pointer;padding:15px 18px;font-size:14.5px;font-weight:600;
+  display:flex;justify-content:space-between;gap:12px;align-items:center;
+}
+.dt-faq-grid summary::-webkit-details-marker{display:none}
+.dt-faq-grid summary::after{content:"＋";color:var(--dt-cyan);font-weight:700;flex:none}
+.dt-faq-grid details[open] summary::after{content:"－"}
+.dt-faq-grid details p{padding:0 18px 16px;font-size:13.5px;color:var(--dt-muted)}
+
+/* ============ 合作墙 ============ */
+.dt-partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.dt-partner{
+  border:1px solid var(--dt-line);border-radius:var(--dt-radius-sm);
+  background:var(--dt-bg-soft);padding:18px;text-align:center;
+  transition:border-color .2s,color .2s;
+}
+.dt-partner:hover{border-color:rgba(63,214,201,.5)}
+.dt-partner b{display:block;font-size:15px;letter-spacing:.04em}
+.dt-partner span{font-size:11.5px;color:var(--dt-muted)}
+
+/* ============ 联系 / 投稿 ============ */
+.dt-contact{
+  display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;
+  background:linear-gradient(130deg,var(--dt-panel),#101c26);
+  border:1px solid var(--dt-line);border-radius:var(--dt-radius);padding:30px;
+}
+.dt-contact h2{font-size:clamp(22px,2.7vw,28px);margin-bottom:9px}
+.dt-contact p{color:var(--dt-muted);font-size:14.5px;margin-bottom:16px}
+.dt-contact-actions{display:flex;flex-wrap:wrap;gap:10px}
+.dt-contact-side{display:flex;flex-direction:column;gap:10px;justify-content:center}
+.dt-contact-line{display:flex;gap:10px;font-size:13.5px;color:#bfd0dd;align-items:flex-start}
+.dt-contact-line b{color:var(--dt-cyan);flex:none;font-weight:700}
+
+/* ============ 页脚 ============ */
+.dt-footer{
+  border-top:1px solid var(--dt-line);background:rgba(10,15,20,.7);
+  padding:46px 0 26px;margin-top:20px;
+}
+.dt-footer-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:30px}
+.dt-footer h3{font-size:13px;letter-spacing:.14em;color:var(--dt-cyan);margin-bottom:12px;font-weight:700}
+.dt-footer p,.dt-footer li{font-size:13.5px;color:var(--dt-muted);line-height:1.9}
+.dt-footer ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.dt-footer a:hover{color:var(--dt-cyan)}
+.dt-footer-brand{display:flex;align-items:center;gap:11px;margin-bottom:13px}
+.dt-footer-bottom{
+  margin-top:30px;padding-top:18px;border-top:1px solid var(--dt-line);
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;
+  font-size:12.5px;color:#64788a;
+}
+.dt-footer-bottom span{display:inline-block;margin-right:14px}
+
+/* ============ 回到顶部 & Toast ============ */
+.dt-top{
+  position:fixed;right:22px;bottom:26px;z-index:120;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--dt-cyan);color:#06201e;font-size:18px;font-weight:800;
+  display:grid;place-items:center;box-shadow:0 12px 28px rgba(63,214,201,.34);
+  opacity:0;visibility:hidden;transform:translateY(12px);
+  transition:opacity .22s,transform .22s,visibility .22s;
+}
+.dt-top.dt-show{opacity:1;visibility:visible;transform:translateY(0)}
+.dt-toast{
+  position:fixed;left:50%;bottom:34px;z-index:200;
+  transform:translate(-50%,18px);opacity:0;visibility:hidden;
+  background:#0b141b;border:1px solid rgba(63,214,201,.45);
+  color:var(--dt-text);font-size:14px;padding:11px 22px;border-radius:999px;
+  box-shadow:var(--dt-shadow);transition:opacity .22s,transform .22s,visibility .22s;
+  max-width:86vw;text-align:center;
+}
+.dt-toast.dt-show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* ============ 弹窗 ============ */
+.dt-modal-mask{
+  position:fixed;inset:0;z-index:180;background:rgba(4,8,12,.78);
+  display:none;place-items:center;padding:22px;backdrop-filter:blur(4px);
+}
+.dt-modal-mask.dt-show{display:grid}
+.dt-modal{
+  width:min(560px,94vw);max-height:86vh;overflow:auto;
+  background:var(--dt-panel);border:1px solid var(--dt-line);
+  border-radius:var(--dt-radius);padding:26px 26px 24px;box-shadow:var(--dt-shadow);
+}
+.dt-modal h3{font-size:19px;margin-bottom:12px;color:var(--dt-cyan)}
+.dt-modal p{font-size:14px;color:var(--dt-muted);margin-bottom:10px}
+.dt-modal textarea{
+  width:100%;min-height:110px;resize:vertical;border-radius:10px;
+  background:var(--dt-bg-soft);border:1px solid var(--dt-line);
+  color:var(--dt-text);padding:12px;font-size:14px;outline:none;
+}
+.dt-modal textarea:focus{border-color:var(--dt-cyan)}
+.dt-modal-row{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}
+.dt-modal-close{
+  position:relative;float:right;font-size:20px;color:var(--dt-muted);line-height:1;
+}
+.dt-modal-close:hover{color:var(--dt-coral)}
+
+/* ============ 响应式 ============ */
+@media (max-width:1020px){
+  .dt-hero-grid{grid-template-columns:1fr;gap:26px}
+  .dt-hero-visual img{aspect-ratio:16/10}
+  .dt-hero-badge{left:auto;right:14px;bottom:14px}
+  .dt-focus-grid{grid-template-columns:1fr}
+  .dt-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dt-topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dt-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dt-contact{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  :root{--dt-sticky-h:118px}
+  .dt-announce{gap:10px;font-size:12.5px}
+  .dt-nav{display:none;order:5;width:100%;flex-direction:column;gap:2px;margin-top:10px}
+  .dt-nav.dt-open{display:flex}
+  .dt-burger{display:grid;margin-left:auto}
+  .dt-search{width:100%;order:6;margin-top:8px}
+  .dt-search input{width:100%}
+  .dt-header{flex-wrap:wrap;row-gap:8px}
+  .dt-stat-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .dt-stat{padding:11px 10px}
+  .dt-stat-num{font-size:19px}
+  .dt-stat-label{font-size:11px}
+  .dt-video-grid,.dt-topic-grid,.dt-author-grid,.dt-review-grid,.dt-faq-grid,.dt-partners{grid-template-columns:1fr}
+  .dt-essay{padding:24px 20px 28px}
+  .dt-news-item{grid-template-columns:1fr;gap:6px}
+  .dt-news-more{display:none}
+  .dt-contact{padding:22px}
+  .dt-footer-grid{grid-template-columns:1fr;gap:24px}
+  .dt-hero{padding:30px 0 12px}
+  .dt-section{padding:38px 0}
+  .dt-focus-body{padding:16px 16px 20px}
+  .dt-meta-row .dt-act{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- S1 公告条 + 页头 -->
+<div class="dt-sticky-stack">
+  <div class="dt-announce">
+    <div class="dt-wrap" style="display:flex;align-items:center;gap:14px;min-width:0">
+      <span class="dt-announce-tag">赛事公告</span>
+      <div class="dt-announce-track">
+        <ul class="dt-announce-list">
+          <li><strong>11/22</strong> 秋季影像大赛投稿通道已开启，首日收到原创作品 1,284 件</li>
+          <li><strong>11/20</strong> 新增「赛事解说」专题频道，高清正版内容分批上线</li>
+          <li><strong>11/18</strong> 创作者激励计划第二季报名截止，入围名单即将官方发布</li>
+          <li><strong>11/15</strong> 企业合作专区上线，品牌方可申请联合企划</li>
+          <li><strong>11/22</strong> 秋季影像大赛投稿通道已开启，首日收到原创作品 1,284 件</li>
+          <li><strong>11/20</strong> 新增「赛事解说」专题频道，高清正版内容分批上线</li>
+          <li><strong>11/18</strong> 创作者激励计划第二季报名截止，入围名单即将官方发布</li>
+          <li><strong>11/15</strong> 企业合作专区上线，品牌方可申请联合企划</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="dt-wrap">
+    <header class="dt-header">
+      <a class="dt-brand" href="#dt-hero">
+        <span class="dt-brand-mark">赛</span>
+        <span>
+          <span class="dt-brand-name">每日大赛推特在线</span>
+          <span class="dt-brand-sub">VIDEO &amp; CREATOR</span>
+        </span>
+      </a>
+      <nav class="dt-nav" id="dtNav" aria-label="主导航">
+        <a href="#dt-focus">焦点内容</a>
+        <a href="#dt-videos">视频精选</a>
+        <a href="#dt-essay">品牌解析</a>
+        <a href="#dt-topics">专题企划</a>
+        <a href="#dt-authors">创作者</a>
+        <a href="#dt-reviews">用户口碑</a>
+        <a href="#dt-news">企业动态</a>
+        <a href="#dt-faq">帮助中心</a>
+      </nav>
+      <div class="dt-search">
+        <input id="dtSearchInput" type="search" placeholder="搜索赛事、创作者、专题" aria-label="站内搜索">
+        <button id="dtSearchBtn" type="button">搜索</button>
+      </div>
+      <button class="dt-burger" id="dtBurger" type="button" aria-label="展开导航" aria-expanded="false">☰</button>
+    </header>
+    <p class="dt-search-hint" id="dtSearchHint"></p>
+  </div>
+</div>
+
+<main>
+
+  <!-- S2 品牌首屏 -->
+  <section class="dt-hero" id="dt-hero">
+    <div class="dt-wrap dt-hero-grid">
+      <div>
+        <span class="dt-eyebrow">官方网站 · 企业级视频品牌</span>
+        <h1>每日大赛推特在线</h1>
+        <p class="dt-hero-slogan">赛事在现场发生，<span>影像在社区生长</span></p>
+        <p class="dt-hero-intro">
+          每日大赛推特在线是一个以赛事影像为核心的视频内容品牌与创作者社区。我们把比赛的高光时刻、幕后准备、选手故事与专业解说，整理成可持续观看的高清内容。作为官方网站，我们坚持原创、正版与品质优先，为企业、创作者与观众搭建可信赖的内容生态。
+        </p>
+        <div class="dt-stat-row">
+          <div class="dt-stat">
+            <div class="dt-stat-num" data-dt-count="8600">8600+</div>
+            <div class="dt-stat-label">原创视频作品</div>
+          </div>
+          <div class="dt-stat">
+            <div class="dt-stat-num" data-dt-count="1240">1240+</div>
+            <div class="dt-stat-label">注册创作者</div>
+          </div>
+          <div class="dt-stat">
+            <div class="dt-stat-num" data-dt-count="320">320万</div>
+            <div class="dt-stat-label">月均观看人次</div>
+          </div>
+        </div>
+        <div class="dt-hero-actions">
+          <a class="dt-btn dt-btn-primary" href="#dt-videos">观看精品内容</a>
+          <a class="dt-btn dt-btn-ghost" href="#dt-authors">认识创作者</a>
+          <button class="dt-btn dt-btn-coral" type="button" data-dt-open="submit">我要投稿报名</button>
+        </div>
+      </div>
+      <div class="dt-hero-visual">
+        <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 704'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230c1620'/%3E%3Cstop offset='1' stop-color='%231d3644'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%233fd6c9'/%3E%3Cstop offset='1' stop-color='%23c6f24e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='704' fill='url(%23a)'/%3E%3Ccircle cx='470' cy='150' r='118' fill='%23ff7a59' opacity='.22'/%3E%3Ccircle cx='152' cy='560' r='150' fill='%233fd6c9' opacity='.14'/%3E%3Cpath d='M0 470 L640 320 L640 704 L0 704 Z' fill='%23081219' opacity='.85'/%3E%3Cg stroke='%233fd6c9' stroke-width='2' opacity='.7'%3E%3Cpath d='M70 322 L240 250 L370 300 L250 372 Z' fill='none'/%3E%3Cpath d='M250 372 L370 300 L470 348' fill='none'/%3E%3C/g%3E%3Cg fill='%23e6eef5'%3E%3Ccircle cx='120' cy='180' r='9'/%3E%3Ccircle cx='300' cy='130' r='6'/%3E%3Ccircle cx='540' cy='262' r='7'/%3E%3C/g%3E%3Crect x='70' y='430' width='300' height='16' rx='8' fill='url(%23b)'/%3E%3Crect x='70' y='462' width='210' height='10' rx='5' fill='%23e6eef5' opacity='.5'/%3E%3Crect x='70' y='484' width='150' height='10' rx='5' fill='%23e6eef5' opacity='.28'/%3E%3Cg opacity='.9'%3E%3Crect x='408' y='430' width='160' height='96' rx='12' fill='%2313212c' stroke='%233fd6c9'/%3E%3Cpath d='M470 462 L470 494 L498 478 Z' fill='%233fd6c9'/%3E%3C/g%3E%3C/svg%3E" alt="每日大赛推特在线品牌首屏主视觉：赛事影像与创作者社区" width="640" height="704">
+        <div class="dt-hero-badge">
+          <b>4K</b>
+          <span>官方原创影像<br>高清正版内容持续更新</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dt-wrap"><div class="dt-divider"></div></div>
+
+  <!-- S3 焦点内容：一幅重点大图 + 文字推荐列表 -->
+  <section class="dt-section dt-anchor" id="dt-focus">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">FOCUS 焦点推荐</span>
+          <h2>每日大赛推特在线 · 本周焦点影像</h2>
+        </div>
+        <p>编辑团队从赛事前线、创作者投稿与观众口碑中挑选本周值得完整看完的内容。</p>
+      </div>
+      <div class="dt-focus-grid">
+        <article class="dt-focus-main">
+          <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 540'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2310181f'/%3E%3Cstop offset='1' stop-color='%23203848'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='960' height='540' fill='url(%23s)'/%3E%3Cg opacity='.55' stroke='%233fd6c9' fill='none' stroke-width='2'%3E%3Ccircle cx='300' cy='290' r='140'/%3E%3Ccircle cx='300' cy='290' r='96'/%3E%3Cpath d='M300 120 L300 460 M130 290 L470 290'/%3E%3C/g%3E%3Ccircle cx='300' cy='290' r='30' fill='%23ff7a59'/%3E%3Cg fill='%23e6eef5'%3E%3Crect x='560' y='150' width='300' height='14' rx='7'/%3E%3Crect x='560' y='188' width='240' height='10' rx='5' opacity='.55'/%3E%3Crect x='560' y='214' width='270' height='10' rx='5' opacity='.32'/%3E%3C/g%3E%3Cg fill='%23c6f24e'%3E%3Crect x='560' y='300' width='92' height='92' rx='10'/%3E%3Crect x='666' y='300' width='92' height='92' rx='10' opacity='.55'/%3E%3Crect x='772' y='300' width='92' height='92' rx='10' opacity='.28'/%3E%3C/g%3E%3C/svg%3E" alt="本周焦点影像：秋季影像大赛决赛现场全记录封面" width="960" height="540">
+          <div class="dt-focus-body">
+            <div class="dt-tagline">
+              <span class="dt-tag dt-tag-coral">赛事全记录</span>
+              <span class="dt-tag">高清正版</span>
+              <span class="dt-tag">18:42</span>
+            </div>
+            <h3>决赛现场全记录：一场持续 11 小时的影像马拉松</h3>
+            <p>从清晨布景到深夜颁奖，摄制组用三机位完整记录了本届秋季影像大赛的决赛日。作品如何从 3,200 件投稿中筛选到 60 件入围，评审在现场如何争论，选手在等待区如何调整状态，都在这一期官方纪录片里。</p>
+            <div class="dt-meta-row">
+              <span class="dt-author-chip"><span class="dt-avatar" style="background:#3fd6c9">赛</span>官方摄制组</span>
+              <span>播放 12.8万</span>
+              <span>点赞 6,721</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>6721</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆ 收藏</button>
+                <button type="button" data-dt-report>举报</button>
+              </div>
+            </div>
+          </div>
+        </article>
+        <div class="dt-side-list">
+          <a class="dt-side-item" href="#dt-videos">
+            <span class="dt-side-num">01</span>
+            <div>
+              <h4>解说台之外：三位解说员的赛前 48 小时</h4>
+              <span>人物访谈 · 创作者「林一帧」 · 播放 5.4万</span>
+            </div>
+          </a>
+          <a class="dt-side-item" href="#dt-videos">
+            <span class="dt-side-num">02</span>
+            <div>
+              <h4>用一支长焦讲完半场：赛事摄影的取舍笔记</h4>
+              <span>实用技巧 · 创作者「高感光阿哲」 · 播放 4.1万</span>
+            </div>
+          </a>
+          <a class="dt-side-item" href="#dt-videos">
+            <span class="dt-side-num">03</span>
+            <div>
+              <h4>新人第一场比赛，如何拍出能投稿的成片</h4>
+              <span>教程干货 · 创作者「三脚架日记」 · 播放 3.8万</span>
+            </div>
+          </a>
+          <a class="dt-side-item" href="#dt-topics">
+            <span class="dt-side-num">04</span>
+            <div>
+              <h4>口碑榜更新：11 月观众评分最高的 10 部短片</h4>
+              <span>数据榜单 · 官方编辑部 · 播放 3.2万</span>
+            </div>
+          </a>
+          <a class="dt-side-item" href="#dt-topics">
+            <span class="dt-side-num">05</span>
+            <div>
+              <h4>赛事之外的 24 小时：城市探索特别企划预告</h4>
+              <span>专题企划 · 更新中 · 已更新 3 集</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 视频精选：三列等高卡片 -->
+  <section class="dt-section dt-anchor" id="dt-videos">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">VIDEOS 视频精选</span>
+          <h2>赛事与创作，六个值得点开的视频</h2>
+        </div>
+        <p>每一条都标注了作者、数据与标签，方便你按兴趣筛选，也方便创作者互相学习。</p>
+      </div>
+      <div class="dt-video-grid">
+
+        <article class="dt-video-card">
+          <div class="dt-video-thumb">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%2317222c'/%3E%3Cpath d='M0 360 L200 190 L360 268 L520 150 L640 220 L640 360 Z' fill='%233fd6c9' opacity='.35'/%3E%3Ccircle cx='140' cy='110' r='52' fill='%23ff7a59' opacity='.75'/%3E%3Cg stroke='%23e6eef5' opacity='.5' fill='none'%3E%3Cpath d='M300 90 h240 M300 120 h180'/%3E%3C/g%3E%3C/svg%3E" alt="赛事解说台幕后视频封面：麦克风与导播台构图" width="640" height="360">
+            <span class="dt-play">▶</span>
+          </div>
+          <div class="dt-video-body">
+            <div class="dt-tagline"><span class="dt-tag">创作幕后</span><span class="dt-tag">12:06</span></div>
+            <h3>解说台幕后：一支麦克风背后的三小时准备</h3>
+            <p>从赛前资料卡到临场改口，解说员如何把一场快节奏比赛讲得清楚又不抢戏。片子里有完整的赛前沟通实录。</p>
+            <div class="dt-video-foot">
+              <span class="dt-author-chip">林一帧</span>
+              <span>播放 5.4万</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>2410</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dt-video-card">
+          <div class="dt-video-thumb">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230f1d18'/%3E%3Cg stroke='%23c6f24e' fill='none' stroke-width='3' opacity='.8'%3E%3Crect x='90' y='70' width='180' height='220' rx='10'/%3E%3Crect x='300' y='120' width='120' height='170' rx='10'/%3E%3Crect x='450' y='90' width='110' height='200' rx='10'/%3E%3C/g%3E%3Ccircle cx='520' cy='60' r='34' fill='%233fd6c9' opacity='.7'/%3E%3C/svg%3E" alt="赛事摄影取舍笔记视频封面：三台机位示意图" width="640" height="360">
+            <span class="dt-play">▶</span>
+          </div>
+          <div class="dt-video-body">
+            <div class="dt-tagline"><span class="dt-tag">实用技巧</span><span class="dt-tag">09:31</span></div>
+            <h3>用一支长焦讲完半场：赛事摄影的取舍笔记</h3>
+            <p>机位有限、光线复杂、动作不可重来，摄影师在现场如何做减法。附拍摄参数与剪辑节奏对照表。</p>
+            <div class="dt-video-foot">
+              <span class="dt-author-chip">高感光阿哲</span>
+              <span>播放 4.1万</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>1880</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dt-video-card">
+          <div class="dt-video-thumb">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23201b2b'/%3E%3Ccircle cx='320' cy='180' r='118' fill='none' stroke='%23ff7a59' stroke-width='4' opacity='.7'/%3E%3Ccircle cx='320' cy='180' r='74' fill='none' stroke='%23ff7a59' stroke-width='3' opacity='.4'/%3E%3Cpath d='M320 62 L320 298 M200 180 L440 180' stroke='%23e6eef5' opacity='.35'/%3E%3Ccircle cx='320' cy='180' r='24' fill='%23c6f24e'/%3E%3C/svg%3E" alt="新人第一场比赛投稿教程视频封面：靶心构图" width="640" height="360">
+            <span class="dt-play">▶</span>
+          </div>
+          <div class="dt-video-body">
+            <div class="dt-tagline"><span class="dt-tag">教程干货</span><span class="dt-tag">15:20</span></div>
+            <h3>新人第一场比赛，如何拍出能投稿的成片</h3>
+            <p>从选题、站位到收尾剪辑，一条完整的投稿路径拆解。也讲清楚了哪些素材不要在比赛现场拍。</p>
+            <div class="dt-video-foot">
+              <span class="dt-author-chip">三脚架日记</span>
+              <span>播放 3.8万</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>1634</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dt-video-card">
+          <div class="dt-video-thumb">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230d1a24'/%3E%3Cg opacity='.85' fill='%233fd6c9'%3E%3Crect x='70' y='230' width='46' height='80'/%3E%3Crect x='140' y='180' width='46' height='130'/%3E%3Crect x='210' y='140' width='46' height='170'/%3E%3Crect x='280' y='196' width='46' height='114'/%3E%3C/g%3E%3Cg fill='%23ff7a59'%3E%3Crect x='380' y='96' width='190' height='18' rx='9'/%3E%3Crect x='380' y='132' width='140' height='12' rx='6' opacity='.65'/%3E%3Crect x='380' y='158' width='166' height='12' rx='6' opacity='.4'/%3E%3C/g%3E%3C/svg%3E" alt="口碑榜数据解读视频封面：柱状图与榜单条目" width="640" height="360">
+            <span class="dt-play">▶</span>
+          </div>
+          <div class="dt-video-body">
+            <div class="dt-tagline"><span class="dt-tag">数据榜单</span><span class="dt-tag">08:44</span></div>
+            <h3>口碑榜数据解读：评分高的短片做对了什么</h3>
+            <p>我们统计了 30 天内 1,860 条观众评分，把「看得下去」拆成叙事、声音与节奏三个可量化的维度。</p>
+            <div class="dt-video-foot">
+              <span class="dt-author-chip">官方编辑部</span>
+              <span>播放 3.2万</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>1288</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dt-video-card">
+          <div class="dt-video-thumb">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23141923'/%3E%3Cpath d='M60 300 Q200 150 340 220 T620 120' stroke='%23c6f24e' stroke-width='5' fill='none'/%3E%3Cg fill='%23e6eef5' opacity='.65'%3E%3Ccircle cx='160' cy='248' r='10'/%3E%3Ccircle cx='340' cy='220' r='10'/%3E%3Ccircle cx='500' cy='168' r='10'/%3E%3C/g%3E%3Crect x='60' y='70' width='150' height='14' rx='7' fill='%23ff7a59'/%3E%3C/svg%3E" alt="赛场骑行纪录片封面：长镜头路径曲线" width="640" height="360">
+            <span class="dt-play">▶</span>
+          </div>
+          <div class="dt-video-body">
+            <div class="dt-tagline"><span class="dt-tag">城市探索</span><span class="dt-tag">21:08</span></div>
+            <h3>赛道穿过老城区：一次城市与比赛的共同呼吸</h3>
+            <p>比赛路线恰好经过三条老街。摄制组跟着选手跑完全程，也记录下沿街居民第一次近距离看比赛的表情。</p>
+            <div class="dt-video-foot">
+              <span class="dt-author-chip">阿环在跑</span>
+              <span>播放 2.9万</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>1102</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dt-video-card">
+          <div class="dt-video-thumb">
+            <img src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%231b1520'/%3E%3Cg opacity='.9'%3E%3Crect x='80' y='90' width='220' height='140' rx='12' fill='%232c2438' stroke='%233fd6c9'/%3E%3Crect x='340' y='130' width='220' height='140' rx='12' fill='%232c2438' stroke='%23ff7a59'/%3E%3C/g%3E%3Cpath d='M190 160 L190 210 M150 185 L230 185' stroke='%23c6f24e' stroke-width='6'/%3E%3Ccircle cx='450' cy='200' r='26' fill='%233fd6c9' opacity='.8'/%3E%3C/svg%3E" alt="选手访谈视频封面：面对面采访与镜头设备" width="640" height="360">
+            <span class="dt-play">▶</span>
+          </div>
+          <div class="dt-video-body">
+            <div class="dt-tagline"><span class="dt-tag">人物访谈</span><span class="dt-tag">17:35</span></div>
+            <h3>落选之后：三位选手的第二年训练日志</h3>
+            <p>去年首轮被淘汰的三位选手，今年带着完整的训练记录回来了。访谈里聊了失败、伤病和重新站上赛场的理由。</p>
+            <div class="dt-video-foot">
+              <span class="dt-author-chip">小满记录</span>
+              <span>播放 2.6万</span>
+              <div class="dt-act">
+                <button type="button" data-dt-like aria-pressed="false">♡ <span>986</span></button>
+                <button type="button" data-dt-fav aria-pressed="false">☆</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 品牌深度解析（800字以上） -->
+  <section class="dt-section dt-anchor" id="dt-essay">
+    <div class="dt-wrap">
+      <div class="dt-essay">
+        <span class="dt-kicker">BRAND 深度解析</span>
+        <h2>每日大赛推特在线：一个赛事视频品牌如何把「看比赛」变成长期社区</h2>
+        <p class="dt-essay-lead">关键词解析 · 行业观察 · 内容生态 · 约 1,000 字</p>
+
+        <h3>一、为什么赛事内容值得被认真做成视频官网</h3>
+        <p>比赛从来不只是结果。一场比赛的现场，有准备、有失误、有临场改变策略的瞬间，也有观众席上第一次看懂规则的孩子。过去这些内容大多停留在碎片化传播里：一段十几秒的高光、一张截图、一句赛后评论。每日大赛推特在线选择了一条更重的路——把它们整理成可检索、可回看、可讨论的视频内容，并在官方网站上形成稳定更新。</p>
+        <p>这也是我们把品牌定位为「赛事影像社区」而不是单纯赛事资讯的原因。<strong>赛事只是入口，影像才是产品。</strong>我们关心的是画面是否能讲清楚一个动作的来龙去脉，声音是否能还原现场的温度，剪辑是否尊重观众的注意力。为了让这些标准可执行，我们建立了从选题、拍摄、审核到上线的内容流程，每一部作品都要经过至少两道画面与版权检查，这也是「高清正版」四个字背后的实际工作量。</p>
+        <p>对观众来说，这意味着打开页面就能看到完整叙事，而不是被不断跳转的片段打断；对创作者来说，这意味着投稿有明确的格式与题材方向，作品不会被埋没在无序的信息流里。一个垂直领域的视频品牌，真正的价值就是在碎片时代重新建立「完整观看」的习惯。</p>
+
+        <h3>二、内容生态的四个支柱：焦点、专题、创作者、口碑</h3>
+        <p>我们的内容生态由四个互相咬合的支柱组成。第一是<strong>焦点内容</strong>：编辑团队从每日新增作品中挑出本周最值得完整观看的影像，配上作者信息、数据与讨论入口，形成一个稳定的「入口级」推荐。第二是<strong>专题企划</strong>：把零散内容按主题归档，例如「赛事解说」「新人第一场」「城市与赛道」，每个专题有明确的更新状态与内容条目，方便观众追更。</p>
+        <p>第三是<strong>创作者矩阵</strong>。我们不做单方面的内容分发平台，而是把创作者当作长期合作者。每位入驻创作者都有完整档案：擅长领域、作品数、粉丝数与一段自我介绍。我们在页面里公开展示这些信息，是为了让观众能形成对作者的长期认知，而不是只记住某一条爆款。品牌与创作者之间是持续运营的关系，有选题会、有复盘、也有收益分成机制。</p>
+        <p>第四是<strong>用户口碑</strong>。评分与短评不是装饰性的数据，它们会反向影响推荐位。观众说「节奏太慢」「声音忽大忽小」，这些话会被整理进内容复盘会。我们相信<strong>用户至上的具体做法，就是让反馈真的改变下一页内容。</strong></p>
+        <div class="dt-essay-quote">我们不追逐单条内容的短期热度，更在意一条视频在三个月后是否仍然值得被点开。</div>
+
+        <h3>三、行业观察：赛事视频正在从「转播」走向「叙事」</h3>
+        <p>过去两年，赛事类视频明显出现了两个变化。一是<strong>从转播视角转向人物视角</strong>：观众不再满足于看谁赢了，还想知道选手在关键时刻想了什么、教练在边线说了什么、摄影师在什么位置按下快门。二是<strong>从长转播转向短叙事</strong>：8 到 20 分钟的深度短片，比一场三小时的完整转播更容易被完整看完，也更容易被二次讨论。</p>
+        <p>每日大赛推特在线在这两个变化里都做了具体布局。我们保留了完整赛事的回看入口，同时把主力资源投入到人物访谈、幕后记录与实用教程上。教程类内容是社区活力的重要来源：新人看到「怎么拍出能投稿的成片」，才会从观众变成创作者；创作者发现自己的经验能帮到别人，才会留下来持续更新。这就是内容生态的循环。</p>
+        <p>我们也观察到，赛事内容的商业价值正在从贴片广告转向<strong>品牌联合企划</strong>。企业不再只是买曝光，而是希望和具体的内容主题绑定。为此我们设立了合作专区，让品牌方与创作者围绕同一主题共同创作，既保证内容品质，也让合作更透明。这一模式对平台、企业、创作者三方都更可持续。</p>
+
+        <h3>四、长期主义：品质、真实与陪伴</h3>
+        <p>如果把品牌拆成几个可以检查的词，我们更愿意留下三个：<strong>品质、真实、陪伴</strong>。品质体现在每一帧的画面与每一处字幕的准确性；真实体现在我们不修饰失败、不夸大成绩，落选者的故事同样值得被记录；陪伴体现在持续更新，比赛有淡旺季，但社区不能停更，所以我们用教程、访谈与专题填充赛季之间的空白。</p>
+        <p>面向未来，每日大赛推特在线会继续深耕赛事影像这一垂直领域，扩充创作者扶持计划，完善投稿与评审的公开流程，也会把更多资源投入新人培养。我们相信，一个赛事视频品牌真正的行业影响力，不来自某一次传播，而来自观众愿意在每个赛季准时回来。这也是我们作为企业持续运营的承诺：把比赛拍好，把人讲清楚，把社区留在原地。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 专题企划 -->
+  <section class="dt-section dt-anchor" id="dt-topics">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">TOPICS 专题企划</span>
+          <h2>三个正在更新的专题，跟着看完整季</h2>
+        </div>
+        <p>专题是每日大赛推特在线长期内容的主要形态，每个专题都有固定节奏与明确的主持创作者。</p>
+      </div>
+      <div class="dt-topic-grid">
+
+        <article class="dt-topic">
+          <div class="dt-topic-head">
+            <span class="dt-topic-icon">01</span>
+            <div>
+              <h3>赛事解说学院</h3>
+              <span class="dt-topic-status">更新中 · 已上线 12 集</span>
+            </div>
+          </div>
+          <p>从赛前资料准备到临场控场，请来职业解说与体育主播拆解真实片段。适合想尝试解说或主持赛事活动的新人。</p>
+          <ul>
+            <li>第 12 集：如何在不抢戏的前提下补充信息</li>
+            <li>第 11 集：比分接近时，解说该说什么</li>
+            <li>第 10 集：三名解说员的一次同题竞演</li>
+          </ul>
+        </article>
+
+        <article class="dt-topic">
+          <div class="dt-topic-head">
+            <span class="dt-topic-icon">02</span>
+            <div>
+              <h3>新人第一场</h3>
+              <span class="dt-topic-status">更新中 · 已上线 9 集</span>
+            </div>
+          </div>
+          <p>专为第一次参赛的选手与第一次拿机器的新人准备。每集跟拍一位新人，记录从报名到成片的全过程，包括不顺利的部分。</p>
+          <ul>
+            <li>第 9 集：第一次投稿被退回后，我改了哪些地方</li>
+            <li>第 8 集：在嘈杂看台录到干净同期声的三个办法</li>
+            <li>第 7 集：一部手机能拍到的赛事影像边界</li>
+          </ul>
+        </article>
+
+        <article class="dt-topic">
+          <div class="dt-topic-head">
+            <span class="dt-topic-icon">03</span>
+            <div>
+              <h3>城市与赛道</h3>
+              <span class="dt-topic-status">新上线 · 已上线 3 集</span>
+            </div>
+          </div>
+          <p>比赛会改变一座城市一天的节奏。这个专题沿着赛事路线走访街区、店铺与居民，记录比赛之外的在地生活。</p>
+          <ul>
+            <li>第 3 集：赛道旁开了二十年的早餐铺</li>
+            <li>第 2 集：封路那天，快递员怎么绕行</li>
+            <li>第 1 集：从终点线回望整条街</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 创作者矩阵（双列简介） -->
+  <section class="dt-section dt-anchor" id="dt-authors">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">CREATORS 创作者</span>
+          <h2>内容生态里的四位长期创作者</h2>
+        </div>
+        <p>他们的风格各不相同，共同点是持续更新与对赛事的长期观察。</p>
+      </div>
+      <div class="dt-author-grid">
+
+        <article class="dt-author-card">
+          <span class="dt-avatar dt-avatar-lg" style="background:#3fd6c9">林</span>
+          <div class="dt-author-main">
+            <h3>林一帧 <span class="dt-role">签约创作者</span></h3>
+            <div class="dt-author-facts"><span>擅长：<b>人物访谈</b></span><span>作品 <b>128</b></span><span>粉丝 <b>4.2万</b></span></div>
+            <p>做过五年广播记者，习惯在采访前先听对方说完。镜头语言克制，偏爱固定机位与长访谈。她拍的解说员系列被不少同行当作工作参考。</p>
+            <button class="dt-author-open" type="button" data-dt-open="author">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="dt-author-card">
+          <span class="dt-avatar dt-avatar-lg" style="background:#ff7a59">高</span>
+          <div class="dt-author-main">
+            <h3>高感光阿哲 <span class="dt-role">签约创作者</span></h3>
+            <div class="dt-author-facts"><span>擅长：<b>实用技巧</b></span><span>作品 <b>96</b></span><span>粉丝 <b>3.6万</b></span></div>
+            <p>赛事摄影师出身，擅长在有限机位里找画面。教程从不讲玄学，只讲参数、位置和取舍。他常说，拍不到的画面先写下来，下一次才知道该站哪儿。</p>
+            <button class="dt-author-open" type="button" data-dt-open="author">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="dt-author-card">
+          <span class="dt-avatar dt-avatar-lg" style="background:#c6f24e">三</span>
+          <div class="dt-author-main">
+            <h3>三脚架日记 <span class="dt-role">新人导师</span></h3>
+            <div class="dt-author-facts"><span>擅长：<b>教程干货</b></span><span>作品 <b>74</b></span><span>粉丝 <b>2.1万</b></span></div>
+            <p>从婚礼摄影转到赛事记录，最懂新人第一次拿机器时的慌。她的视频节奏偏慢，喜欢把失败镜头也剪进去，让观众知道成片之外还有多少废片。</p>
+            <button class="dt-author-open" type="button" data-dt-open="author">查看作者档案 →</button>
+          </div>
+        </article>
+
+        <article class="dt-author-card">
+          <span class="dt-avatar dt-avatar-lg" style="background:#8fb4ff">阿</span>
+          <div class="dt-author-main">
+            <h3>阿环在跑 <span class="dt-role">城市记录者</span></h3>
+            <div class="dt-author-facts"><span>擅长：<b>城市探索</b></span><span>作品 <b>61</b></span><span>粉丝 <b>1.8万</b></span></div>
+            <p>本职是城市规划师，业余跟拍赛事路线。他关心比赛如何改变一座城市一天的秩序，也关心沿街店铺在封路那天做了什么生意。画面里有大量街景与人的对话。</p>
+            <button class="dt-author-open" type="button" data-dt-open="author">查看作者档案 →</button>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 用户口碑（双列短评） -->
+  <section class="dt-section dt-anchor" id="dt-reviews">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">REVIEWS 用户口碑</span>
+          <h2>观众与创作者怎么说</h2>
+        </div>
+        <p>评分来自站内观看后的真实评价，长度与关注点各不相同，我们保留原文也没有删去批评。</p>
+      </div>
+      <div class="dt-review-grid">
+
+        <article class="dt-review">
+          <div class="dt-review-top">
+            <span class="dt-avatar" style="background:#3fd6c9">周</span>
+            <strong>周叙</strong>
+            <span class="dt-review-stars">★★★★★</span>
+          </div>
+          <p>第一次在赛事类网站上把一部 21 分钟的纪录片完整看完。城市那期拍得好，老街居民看比赛的表情比我预想的更动人。</p>
+          <div class="dt-review-foot">观看 46 小时 · 评价于 11 月 19 日</div>
+        </article>
+
+        <article class="dt-review">
+          <div class="dt-review-top">
+            <span class="dt-avatar" style="background:#ff7a59">阿</span>
+            <strong>阿吉</strong>
+            <span class="dt-review-stars">★★★★☆</span>
+          </div>
+          <p>教程很实用，参数和机位都写清楚了。唯一想提的是有些页面加载封面略慢，希望继续优化。</p>
+          <div class="dt-review-foot">创作者 · 作品 12 部 · 评价于 11 月 17 日</div>
+        </article>
+
+        <article class="dt-review">
+          <div class="dt-review-top">
+            <span class="dt-avatar" style="background:#c6f24e">木</span>
+            <strong>木子李</strong>
+            <span class="dt-review-stars">★★★★★</span>
+          </div>
+          <p>喜欢这里不吹成绩。落选选手那期访谈看哭了，真实比热血更有力量。</p>
+          <div class="dt-review-foot">观看 120 小时 · 评价于 11 月 15 日</div>
+        </article>
+
+        <article class="dt-review">
+          <div class="dt-review-top">
+            <span class="dt-avatar" style="background:#8fb4ff">程</span>
+            <strong>程一</strong>
+            <span class="dt-review-stars">★★★★☆</span>
+          </div>
+          <p>专题结构清楚，能按顺序追，这点比很多平台强。希望口碑榜能加一个按题材筛选。</p>
+          <div class="dt-review-foot">注册 8 个月 · 评价于 11 月 14 日</div>
+        </article>
+
+        <article class="dt-review">
+          <div class="dt-review-top">
+            <span class="dt-avatar" style="background:#ffb35c">老</span>
+            <strong>老陈不熬夜</strong>
+            <span class="dt-review-stars">★★★★★</span>
+          </div>
+          <p>我五十多岁了，第一次知道比赛还能这么拍。解说那几集讲得慢，我跟得上。</p>
+          <div class="dt-review-foot">观看 18 小时 · 评价于 11 月 12 日</div>
+        </article>
+
+        <article class="dt-review">
+          <div class="dt-review-top">
+            <span class="dt-avatar" style="background:#e07bff">夏</span>
+            <strong>夏末的雨</strong>
+            <span class="dt-review-stars">★★★★☆</span>
+          </div>
+          <p>投稿流程比想象中顺，退回意见也写得具体，不是一句「不符合要求」。会继续投。</p>
+          <div class="dt-review-foot">创作者 · 已投稿 3 次 · 评价于 11 月 10 日</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 企业动态 -->
+  <section class="dt-section dt-anchor" id="dt-news">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">NEWS 企业动态</span>
+          <h2>官方发布与内容更新</h2>
+        </div>
+        <p>品牌运营、内容上线与社区活动的公开记录。</p>
+      </div>
+      <div class="dt-news">
+        <div class="dt-news-item">
+          <span class="dt-news-date">2026 / 11 / 20</span>
+          <div>
+            <h3>秋季影像大赛评审名单公布</h3>
+            <p>七位来自纪录片、体育传播与影像教育的评审正式确认，评审标准与打分细则同步公开。</p>
+          </div>
+          <span class="dt-news-more">官方发布</span>
+        </div>
+        <div class="dt-news-item">
+          <span class="dt-news-date">2026 / 11 / 16</span>
+          <div>
+            <h3>创作者扶持计划第二季启动报名</h3>
+            <p>面向新人创作者开放 60 个名额，提供拍摄设备借用、选题辅导与内容分成支持。</p>
+          </div>
+          <span class="dt-news-more">报名中</span>
+        </div>
+        <div class="dt-news-item">
+          <span class="dt-news-date">2026 / 11 / 11</span>
+          <div>
+            <h3>「赛事解说学院」专题正式上线</h3>
+            <p>首季 12 集内容全部发布，配套解说资料卡模板可免费下载使用。</p>
+          </div>
+          <span class="dt-news-more">精品内容</span>
+        </div>
+        <div class="dt-news-item">
+          <span class="dt-news-date">2026 / 11 / 05</span>
+          <div>
+            <h3>内容审核流程升级公告</h3>
+            <p>新增画面版权与同期声授权两道检查节点，投稿平均反馈时间缩短至 3 个工作日。</p>
+          </div>
+          <span class="dt-news-more">平台更新</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 FAQ -->
+  <section class="dt-section dt-anchor" id="dt-faq">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">FAQ 帮助中心</span>
+          <h2>关于观看、投稿与合作</h2>
+        </div>
+        <p>常见问题整理，未覆盖的情况可通过投稿入口联系我们。</p>
+      </div>
+      <div class="dt-faq-grid">
+        <details>
+          <summary>如何参加每日大赛的投稿和报名？</summary>
+          <p>点击页面上的「我要投稿报名」按钮，填写作者信息与作品链接即可。作品需为原创或已获得授权，提交后会收到确认信息。</p>
+        </details>
+        <details>
+          <summary>平台上的视频可以下载或二次使用吗？</summary>
+          <p>所有标注「高清正版」的内容仅限在线观看。如需引用或商业使用，请通过合作渠道申请书面授权。</p>
+        </details>
+        <details>
+          <summary>创作者扶持计划如何筛选名额？</summary>
+          <p>主要看选题完整度、更新稳定性与内容真实性，粉丝量不是唯一标准。入围结果由官方发布。</p>
+        </details>
+        <details>
+          <summary>投稿被退回后还能再次提交吗？</summary>
+          <p>可以。退回意见会写明具体问题，修改后可重新提交，同一作品不限制修改次数。</p>
+        </details>
+        <details>
+          <summary>企业可以提出品牌联合企划吗？</summary>
+          <p>可以。我们在合作专区开放企划申请，会与创作者共同确定主题与呈现方式，保证内容品质与透明度。</p>
+        </details>
+        <details>
+          <summary>观看时遇到播放问题怎么办？</summary>
+          <p>建议先刷新页面或切换清晰度。若问题持续，请通过举报反馈入口描述设备与网络情况，我们会跟进排查。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 合作墙 -->
+  <section class="dt-section" id="dt-partners">
+    <div class="dt-wrap">
+      <div class="dt-section-head">
+        <div>
+          <span class="dt-kicker">PARTNERS 合作伙伴</span>
+          <h2>与我们共同运营内容生态的伙伴</h2>
+        </div>
+        <p>从赛事主办到设备支持，合作围绕具体内容主题展开。</p>
+      </div>
+      <div class="dt-partners">
+        <div class="dt-partner"><b>城际赛事联盟</b><span>赛事主办合作</span></div>
+        <div class="dt-partner"><b>光迹影像</b><span>设备与技术支持</span></div>
+        <div class="dt-partner"><b>旧街书店</b><span>城市专题联合企划</span></div>
+        <div class="dt-partner"><b>声场录音棚</b><span>同期声与后期支持</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 联系 / 投稿 -->
+  <section class="dt-section dt-anchor" id="dt-contact">
+    <div class="dt-wrap">
+      <div class="dt-contact">
+        <div>
+          <span class="dt-kicker">CONTACT 联系与投稿</span>
+          <h2>把你的比赛影像交给更多懂的人</h2>
+          <p>无论你是第一次投稿的新人，还是希望联合企划的企业，都可以从这里开始。我们会在 3 个工作日内回复，并给出具体的修改建议。</p>
+          <div class="dt-contact-actions">
+            <button class="dt-btn dt-btn-primary" type="button" data-dt-open="submit">提交投稿信息</button>
+            <button class="dt-btn dt-btn-ghost" type="button" data-dt-copy>复制本页链接</button>
+            <button class="dt-btn dt-btn-coral" type="button" data-dt-report>反馈问题</button>
+          </div>
+        </div>
+        <div class="dt-contact-side">
+          <div class="dt-contact-line"><b>投稿邮箱</b><span>creator@saishi-video.example</span></div>
+          <div class="dt-contact-line"><b>合作咨询</b><span>partner@saishi-video.example</span></div>
+          <div class="dt-contact-line"><b>工作时间</b><span>周一至周五 10:00 – 19:00</span></div>
+          <div class="dt-contact-line"><b>内容声明</b><span>本站为每日大赛推特在线官方网站，内容为原创或已获授权。</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- S8 页脚 -->
+<footer class="dt-footer">
+  <div class="dt-wrap">
+    <div class="dt-footer-grid">
+      <div>
+        <div class="dt-footer-brand">
+          <span class="dt-brand-mark">赛</span>
+          <span>
+            <span class="dt-brand-name">每日大赛推特在线</span>
+            <span class="dt-brand-sub">VIDEO &amp; CREATOR</span>
+          </span>
+        </div>
+        <p>每日大赛推特在线官方网站，深耕赛事影像的垂直领域视频品牌。我们持续运营原创、正版、高清的精品内容，与创作者共建值得信赖的内容生态，也为企业提供透明的联合企划合作方式。</p>
+      </div>
+      <div>
+        <h3>内容</h3>
+        <ul>
+          <li><a href="#dt-focus">焦点推荐</a></li>
+          <li><a href="#dt-videos">视频精选</a></li>
+          <li><a href="#dt-topics">专题企划</a></li>
+          <li><a href="#dt-essay">品牌解析</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>社区</h3>
+        <ul>
+          <li><a href="#dt-authors">创作者矩阵</a></li>
+          <li><a href="#dt-reviews">用户口碑</a></li>
+          <li><a href="#dt-news">企业动态</a></li>
+          <li><a href="#dt-faq">帮助中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>关于</h3>
+        <ul>
+          <li><a href="#dt-contact">投稿与联系</a></li>
+          <li><a href="#dt-partners">合作伙伴</a></li>
+          <li><a href="#dt-hero">品牌介绍</a></li>
+          <li><a href="#dt-contact">商业合作</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="dt-footer-bottom">
+      <div>
+        <span>© 2026 每日大赛推特在线 版权所有</span>
+        <span>持续运营中</span>
+        <span>备案号：示例备案 00000000 号</span>
+      </div>
+      <div>
+        <span>官方网站</span>
+        <span>原创内容 · 正版授权</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="dt-top" id="dtTop" type="button" aria-label="回到顶部">↑</button>
+<div class="dt-toast" id="dtToast" role="status" aria-live="polite"></div>
+
+<div class="dt-modal-mask" id="dtModal" role="dialog" aria-modal="true" aria-labelledby="dtModalTitle">
+  <div class="dt-modal">
+    <button class="dt-modal-close" type="button" id="dtModalClose" aria-label="关闭弹窗">×</button>
+    <h3 id="dtModalTitle">投稿与报名</h3>
+    <p id="dtModalDesc">请简要描述你的作品主题与创作者信息，我们会在 3 个工作日内回复。</p>
+    <textarea id="dtModalText" placeholder="例如：我拍了一部关于街区比赛日的 12 分钟短片，希望投稿到「城市与赛道」专题。"></textarea>
+    <div class="dt-modal-row">
+      <button class="dt-btn dt-btn-ghost" type="button" id="dtModalCancel">取消</button>
+      <button class="dt-btn dt-btn-primary" type="button" id="dtModalSend">提交</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var toastEl = document.getElementById('dtToast');
+  var toastTimer = null;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('dt-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('dt-show'); }, 2600);
+  }
+
+  /* 移动端导航折叠 */
+  var burger = document.getElementById('dtBurger');
+  var nav = document.getElementById('dtNav');
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('dt-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.textContent = open ? '✕' : '☰';
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A' && window.innerWidth <= 760){
+      nav.classList.remove('dt-open');
+      burger.setAttribute('aria-expanded','false');
+      burger.textContent = '☰';
+    }
+  });
+
+  /* 搜索反馈 */
+  var searchInput = document.getElementById('dtSearchInput');
+  var searchBtn = document.getElementById('dtSearchBtn');
+  var searchHint = document.getElementById('dtSearchHint');
+  var searchPool = [
+    {k:['解说','访谈','麦克风'], t:'找到相关专题：赛事解说学院（12 集）'},
+    {k:['新人','教程','第一场'], t:'找到相关专题：新人第一场（9 集）与教程类视频 6 部'},
+    {k:['城市','赛道','街区'], t:'找到相关专题：城市与赛道（3 集）'},
+    {k:['摄影','参数','技巧'], t:'找到创作者：高感光阿哲，相关技巧视频 8 部'},
+    {k:['口碑','评分','榜单'], t:'找到栏目：用户口碑与口碑榜数据解读'},
+    {k:['投稿','报名','比赛'], t:'可前往「联系与投稿」提交作品，或在页面顶部使用投稿入口'},
+    {k:['作者','创作者'], t:'找到创作者：林一帧、高感光阿哲、三脚架日记、阿环在跑'}
+  ];
+  function runSearch(){
+    var q = searchInput.value.trim();
+    if(!q){
+      searchHint.textContent = '请输入关键词，例如：解说、新人、城市、投稿。';
+      searchHint.classList.add('dt-show');
+      return;
+    }
+    var hit = null;
+    for(var i=0;i<searchPool.length;i++){
+      var item = searchPool[i];
+      for(var j=0;j<item.k.length;j++){
+        if(q.indexOf(item.k[j]) > -1 || item.k[j].indexOf(q) > -1){ hit = item; break; }
+      }
+      if(hit) break;
+    }
+    searchHint.textContent = hit ? ('「' + q + '」' + hit.t) : ('「' + q + '」暂无直接匹配，建议浏览视频精选或专题企划。');
+    searchHint.classList.add('dt-show');
+  }
+  searchBtn.addEventListener('click', runSearch);
+  searchInput.addEventListener('keydown', function(e){ if(e.key === 'Enter') runSearch(); });
+
+  /* 点赞 +1 / 取消，收藏切换 */
+  document.addEventListener('click', function(e){
+    var likeBtn = e.target.closest('[data-dt-like]');
+    if(likeBtn){
+      var span = likeBtn.querySelector('span');
+      var num = parseInt((span.textContent || '0').replace(/[^\d]/g,''),10) || 0;
+      var on = likeBtn.classList.toggle('dt-on');
+      likeBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      span.textContent = on ? (num + 1) : Math.max(0, num - 1);
+      likeBtn.firstChild.textContent = on ? '♥ ' : '♡ ';
+      toast(on ? '已点赞' : '已取消点赞');
+      return;
+    }
+    var favBtn = e.target.closest('[data-dt-fav]');
+    if(favBtn){
+      var isOn = favBtn.classList.toggle('dt-on');
+      favBtn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+      var hasNum = favBtn.querySelector('span');
+      if(hasNum){
+        var n = parseInt(hasNum.textContent,10) || 0;
+        hasNum.textContent = isOn ? n + 1 : Math.max(0, n - 1);
+      } else {
+        favBtn.textContent = isOn ? '★ 已收藏' : '☆ 收藏';
+      }
+      toast(isOn ? '已加入收藏' : '已取消收藏');
+    }
+  });
+
+  /* 评论 / 举报 / 投稿 弹窗 */
+  var modal = document.getElementById('dtModal');
+  var modalTitle = document.getElementById('dtModalTitle');
+  var modalDesc = document.getElementById('dtModalDesc');
+  var modalText = document.getElementById('dtModalText');
+  var modalSend = document.getElementById('dtModalSend');
+  var modalMode = 'submit';
+  var modalMeta = {
+    submit: {title:'投稿与报名', desc:'请简要描述你的作品主题与创作者信息，我们会在 3 个工作日内回复。', ph:'例如：我拍了一部关于街区比赛日的 12 分钟短片，希望投稿到「城市与赛道」专题。', btn:'提交', ok:'投稿信息已记录，感谢你的信任'},
+    report: {title:'反馈问题', desc:'请描述你遇到的问题，我们会安排相关同事跟进。', ph:'例如：某条视频在移动端播放时声音偏小。', btn:'提交反馈', ok:'反馈已提交，我们会尽快处理'},
+    author: {title:'创作者档案预览', desc:'林一帧 · 擅长人物访谈，作品 128 部，粉丝 4.2 万。点击提交可申请查看完整档案。', ph:'可写下你希望了解的内容，例如：她的赛前采访流程。', btn:'申请查看', ok:'申请已提交，档案更新后通知你'},
+    comment:{title:'发表评论', desc:'请保持友善与具体，你的反馈会进入内容复盘。', ph:'例如：这一期的声音处理比上一集更干净。', btn:'发表', ok:'评论已发布到本页讨论区'}
+  };
+  function openModal(mode){
+    modalMode = mode;
+    var m = modalMeta[mode] || modalMeta.submit;
+    modalTitle.textContent = m.title;
+    modalDesc.textContent = m.desc;
+    modalText.value = '';
+    modalText.placeholder = m.ph;
+    modalSend.textContent = m.btn;
+    modal.classList.add('dt-show');
+    setTimeout(function(){ modalText.focus(); }, 60);
+  }
+  function closeModal(){ modal.classList.remove('dt-show'); }
+
+  document.addEventListener('click', function(e){
+    var openBtn = e.target.closest('[data-dt-open]');
+    if(openBtn){
+      openModal(openBtn.getAttribute('data-dt-open'));
+      return;
+    }
+    if(e.target.closest('[data-dt-report]')){ openModal('report'); }
+  });
+  document.getElementById('dtModalClose').addEventListener('click', closeModal);
+  document.getElementById('dtModalCancel').addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+  modalSend.addEventListener('click', function(){
+    var m = modalMeta[modalMode] || modalMeta.submit;
+    closeModal();
+    toast(m.ok);
+  });
+
+  /* 复制链接 */
+  function copyLink(){
+    var link = window.location.href;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(link).then(function(){ toast('页面链接已复制到剪贴板'); }, fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
+  }
+  function fallbackCopy(){
+    var ta = document.createElement('textarea');
+    ta.value = window.location.href;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('页面链接已复制'); }
+    catch(err){ toast('复制失败，请手动复制地址栏链接'); }
+    document.body.removeChild(ta);
+  }
+  document.addEventListener('click', function(e){ if(e.target.closest('[data-dt-copy]')) copyLink(); });
+
+  /* 回到顶部 */
+  var topBtn = document.getElementById('dtTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 480){ topBtn.classList.add('dt-show'); }
+    else { topBtn.classList.remove('dt-show'); }
+  }, {passive:true});
+  topBtn.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+  </html>
